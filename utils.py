@@ -364,7 +364,7 @@ class Plotter(keras.callbacks.Callback):
         
     def on_epoch_end(self, epoch, logs={}):
         get_layer = K.function([self.model.layers[0].input], 
-                               [self.model.layers[2].output])
+                               [self.model.layers[self.encoder_layer].output])
         xy_ = get_layer([self.x])[0]
         xy = self.pca.fit_transform(xy_)
 
