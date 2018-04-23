@@ -286,14 +286,12 @@ def plot_abx_from_splits(splits_all_bm, splits_all_pn, splits_all_tt, splits_all
     splits_all_tt.groupby(['type'])['score'].plot(ax=axes[2], **param)
     splits_all_cb.groupby(['type'])['score'].plot(ax=axes[3], **param)
 
-    # X titles
     axes[0].legend(["different", "same"], loc=2)
     axes[0].set_title("Blue Monkey", fontsize=30)
     axes[1].set_title("Putty Nosed", fontsize=30)
     axes[2].set_title("Titi", fontsize=30)
     axes[3].set_title("Campbell", fontsize=30)
 
-    # Y titles
     axes[0].set_xlabel("ABX score", fontsize=30)
     axes[0].set_ylabel("ALL", fontsize=30)
 
