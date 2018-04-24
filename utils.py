@@ -92,7 +92,9 @@ def trasform_calls(features, calls):
     #return remove_calls(translate_bm(features), calls
 
 
-def to_pandas(features, labels): 
+def to_pandas(features, labels, 
+        species=['BM-Kenya', 'BM-Uganda', 'PN', 'TT', 'CB', 'CL'],
+        to_remove=['x', 'A', 'A*', 'Nscrm', 'BO', 'BS', 'Bw', 'C', 'K+/W+']): 
     features = to_pandas_(features, labels)
     features = select_species(features, species)
     features = trasform_calls(features, to_remove)
