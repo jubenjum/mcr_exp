@@ -419,6 +419,7 @@ class Plotter(keras.callbacks.Callback):
                 continue
                 
             ax = plt.subplot(gs[0, n])
+            ax.set_title("PCA components {} and {}".format(x_n+1, y_n+1))
             for label in self.uniq_labels:
                 idx = self.labels == label
                 c=[self.rgb_values[x] for x in self.y[idx]]
