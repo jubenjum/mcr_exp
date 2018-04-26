@@ -39,6 +39,17 @@ import matplotlib.pyplot as plt
 from matplotlib import gridspec
 
 
+def read_csv(data_file):
+    labels_from_csv = []
+    features_from_csv = []
+    with open(data_file, 'r') as dfile:
+        for line in dfile.readlines():
+            row = line.strip().split(',')
+            labels_from_csv.append(row[0])  
+            features_from_csv.append([float(x) for x in row[1:]])
+    return features_from_csv, labels_from_csv
+
+
 def normalize(features):
     ''' Normalize features in the range (0,1) '''    
     x = np.ma.array(features, mask=np.isnan(features))  
