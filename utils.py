@@ -12,6 +12,7 @@ from keras.models import Model
 from keras.layers import Input, Dense, Masking, Conv2D, MaxPooling2D, Dropout, Flatten, Lambda
 from keras.layers import LSTM, RepeatVector
 from keras import backend as K
+from keras import regularizers
 
 from sklearn import svm, preprocessing, metrics, linear_model
 from sklearn.model_selection import train_test_split
@@ -21,6 +22,12 @@ from sklearn.metrics import roc_curve, auc
 from sklearn.datasets import fetch_mldata
 from sklearn.preprocessing import LabelEncoder
 from sklearn.decomposition import PCA
+from sklearn.manifold import TSNE
+from sklearn.preprocessing import StandardScaler
+from sklearn.decomposition import TruncatedSVD
+from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
+
+
 
 from IPython.display import clear_output
 from collections import defaultdict
@@ -31,6 +38,15 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 from matplotlib import gridspec
 
+
+def normalize(features):
+    ''' Normalize features in the range (0,1) '''    
+    x = np.ma.array(features, mask=np.isnan(features))  
+    x_ = (x - x.mean(axis=0)) / x.std(axis=0) 
+    x_norm = x_.data
+    x_norm[x_norm == 0.0] += np.finfo(float).eps 
+    x_norm[x.mask] = 0.0
+    return x_norm
 
 
 def to_pandas_(features, labels):
